@@ -1,1 +1,3 @@
-# odin-calculator
+The goal of this project is to build a functional  on screen calculator using HTML, CSS, and most importantly JavaScript. The calculator is going to be able to do basic mathematical functions that the calculator on your phone is capable of. This includes addition, subtraction, multiplication, and division as well as handle decimals. The calculator will be able to display the current actions of the user as well as the current mathematical processes in action. This project will be very JavaScript heavy but a unique and functional design will be implemented using CSS. 
+
+This project comes from the Odin Project's Foundations curriculum in the JavaScript section.
