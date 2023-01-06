@@ -1,19 +1,35 @@
+//Mathematical functions (+, -, *, /)
 function add(x, y) {
     return x + y;
 }
-console.log(add(2, 5));
 
 function subtract(x, y) {
     return x - y;
 }
-console.log(subtract(10, 2));
 
 function multiply(x, y) {
     return x * y;
 }
-console.log(multiply(2, 10));
 
 function divide(x, y) {
     return x / y;
 }
-console.log(divide(100, 2));
+
+//Function that takes in operator and 2 numbers then applies one of the math functions to the numbers.
+function operate(x, y, z) {
+    let output = 0;
+
+    if (z === '+') {
+        output = add(x, y);
+        return output;
+    } else if (z === '-') {
+        output = subtract(x, y);
+        return output;
+    } else if (z === '*') {
+        output = multiply(x, y);
+        return output;
+    } else if (z === '/') {
+        output = divide(x, y);
+        return output;
+    }
+}
