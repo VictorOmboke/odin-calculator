@@ -34,3 +34,14 @@ function operate(x, y, z) {
     }
 }
 
+//DOM elements for displaying information when buttons are pushed.
+const display = document.querySelector('#display');
+
+//EventListener that displays the numbers when clicked.
+const numbers = document.querySelectorAll('#numbers');
+
+numbers.forEach((number) => {
+    number.addEventListener('click', () => {
+        display.textContent = number.classList;
+    });
+});
