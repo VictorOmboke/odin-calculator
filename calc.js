@@ -36,12 +36,26 @@ function operate(x, y, z) {
 
 //DOM elements for displaying information when buttons are pushed.
 const display = document.querySelector('#display');
+const formula = document.querySelector('.formula');
+const output = document.querySelector('.output');
 
-//EventListener that displays the numbers when clicked.
+//Function that displays the numbers when clicked.
 const numbers = document.querySelectorAll('#numbers');
 
-numbers.forEach((number) => {
-    number.addEventListener('click', () => {
-        display.textContent = number.classList;
+let displayValue = [];
+
+function calcDisplay() {
+    let counter = 0;
+
+    numbers.forEach((number) => {
+        number.addEventListener('click', () => {
+            displayValue.push(number.value);
+            console.log(displayValue);
+            output.textContent = displayValue.join('');
+            counter++;
+            console.log(counter);
+        });
     });
-});
+}
+
+calcDisplay();
