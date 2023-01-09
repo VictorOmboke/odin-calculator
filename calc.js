@@ -41,11 +41,17 @@ const output = document.querySelector('.output');
 
 //Function that displays the numbers when clicked.
 const numbers = document.querySelectorAll('#numbers');
+const decimal = document.querySelector('.decimal');
 
 let displayValue = [];
 
 function calcDisplay() {
     let counter = 0;
+
+    decimal.addEventListener('click', () => {
+        displayValue.push(decimal.value);
+        output.textContent = displayValue.join('');
+    }, { once: true });
 
     numbers.forEach((number) => {
         number.addEventListener('click', () => {
