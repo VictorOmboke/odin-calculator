@@ -39,19 +39,15 @@ const display = document.querySelector('#display');
 const formula = document.querySelector('.formula');
 const output = document.querySelector('.output');
 
-//Function that displays the numbers when clicked.
+//DOM elements for buttons.
 const numbers = document.querySelectorAll('#numbers');
 const decimal = document.querySelector('.decimal');
 
+//Function that displays the numbers when clicked.
 let displayValue = [];
 
 function calcDisplay() {
     let counter = 0;
-
-    decimal.addEventListener('click', () => {
-        displayValue.push(decimal.value);
-        output.textContent = displayValue.join('');
-    }, { once: true });
 
     numbers.forEach((number) => {
         number.addEventListener('click', () => {
@@ -62,6 +58,17 @@ function calcDisplay() {
             console.log(counter);
         });
     });
+
+    decimal.addEventListener('click', () => {
+        if (counter < 1) {
+            displayValue.push(counter);
+            displayValue.push(decimal.value);
+            output.textContent = displayValue.join('');
+        } else {
+            displayValue.push(decimal.value);
+            output.textContent = displayValue.join('');
+        };
+    }, { once: true });
 }
 
 calcDisplay();
