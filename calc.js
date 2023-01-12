@@ -38,6 +38,7 @@ function operate(x, y, z) {
 const display = document.querySelector('#display');
 const formula = document.querySelector('.formula');
 const output = document.querySelector('.output');
+const clear = document.querySelector('.clear');
 
 //DOM elements for buttons.
 const numbers = document.querySelectorAll('#numbers');
@@ -46,9 +47,9 @@ const zero = document.querySelector('.zero');
 
 //Function that displays the numbers when clicked as well as limit certain buttons.
 let displayValue = [];
+let counter = 0;
 
 function calcDisplay() {
-    let counter = 0;
 
     numbers.forEach((number) => {
         number.addEventListener('click', () => {
@@ -60,6 +61,18 @@ function calcDisplay() {
         });
     });
 
+    zero.addEventListener('click', () => {
+        if (counter >= 1) {
+            displayValue.push(zero.value);
+            output.textContent = displayValue.join('');
+        }
+    });
+}
+
+calcDisplay();
+
+//Function that displays the decimal as well as limits when and how it is displayed.
+function decimalDisplay() {
     decimal.addEventListener('click', () => {
         if (counter < 1) {
             displayValue.push(counter);
@@ -71,13 +84,19 @@ function calcDisplay() {
             output.textContent = displayValue.join('');
         };
     }, { once: true });
+}
 
-    zero.addEventListener('click', () => {
-        if (counter >= 1) {
-            displayValue.push(zero.value);
-            output.textContent = displayValue.join('');
-        }
+decimalDisplay();
+
+//Function that clears the display as well as the stored numbers in array.
+function clearDisplay() {
+    clear.addEventListener('click', () => {
+        counter = 0;
+        displayValue = [];
+        console.log(displayValue);
+        output.textContent = '0';
+        decimalDisplay();
     });
 }
 
-calcDisplay();
+clearDisplay();
