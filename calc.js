@@ -65,6 +65,7 @@ function calcDisplay() {
             displayValue.push(counter);
             displayValue.push(decimal.value);
             output.textContent = displayValue.join('');
+            counter++;
         } else {
             displayValue.push(decimal.value);
             output.textContent = displayValue.join('');
