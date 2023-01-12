@@ -42,8 +42,9 @@ const output = document.querySelector('.output');
 //DOM elements for buttons.
 const numbers = document.querySelectorAll('#numbers');
 const decimal = document.querySelector('.decimal');
+const zero = document.querySelector('.zero');
 
-//Function that displays the numbers when clicked.
+//Function that displays the numbers when clicked as well as limit certain buttons.
 let displayValue = [];
 
 function calcDisplay() {
@@ -69,6 +70,13 @@ function calcDisplay() {
             output.textContent = displayValue.join('');
         };
     }, { once: true });
+
+    zero.addEventListener('click', () => {
+        if (counter >= 1) {
+            displayValue.push(zero.value);
+            output.textContent = displayValue.join('');
+        }
+    });
 }
 
 calcDisplay();
