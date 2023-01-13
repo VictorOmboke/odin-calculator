@@ -38,12 +38,13 @@ function operate(x, y, z) {
 const display = document.querySelector('#display');
 const formula = document.querySelector('.formula');
 const output = document.querySelector('.output');
-const clear = document.querySelector('.clear');
 
 //DOM elements for buttons.
 const numbers = document.querySelectorAll('#numbers');
 const decimal = document.querySelector('.decimal');
 const zero = document.querySelector('.zero');
+const clear = document.querySelector('.clear');
+const deleteBtn = document.querySelector('.delete');
 
 //Function that displays the numbers when clicked as well as limit certain buttons.
 let displayValue = [];
@@ -63,6 +64,7 @@ function calcDisplay() {
 
     zero.addEventListener('click', () => {
         if (counter >= 1) {
+            counter++;
             displayValue.push(zero.value);
             output.textContent = displayValue.join('');
         }
@@ -74,13 +76,17 @@ calcDisplay();
 //Function that displays the decimal as well as limits when and how it is displayed.
 function decimalDisplay() {
     decimal.addEventListener('click', () => {
+        const decimalCheck = displayValue.includes('.');
+
         if (counter < 1) {
-            displayValue.push(counter);
-            displayValue.push(decimal.value);
-            output.textContent = displayValue.join('');
+            displayValue.push(zero.value);
             counter++;
-        } else {
             displayValue.push(decimal.value);
+            counter++;
+            output.textContent = displayValue.join('');
+        } else if (decimalCheck === false) {
+            displayValue.push(decimal.value);
+            counter++;
             output.textContent = displayValue.join('');
         };
     }, { once: true });
@@ -100,3 +106,19 @@ function clearDisplay() {
 }
 
 clearDisplay();
+
+//Function that deletes numbers from right to left on the display as well as displayValue
+function deleteDisplay() {
+    deleteBtn.addEventListener('click', () => {
+        if (counter > 0) {
+            counter--;
+        };
+        console.log(counter);
+        displayValue.pop();
+        console.log(displayValue);
+        output.textContent = displayValue.join('');
+        decimalDisplay();
+    });
+}
+
+deleteDisplay();
