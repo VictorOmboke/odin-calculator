@@ -21,16 +21,16 @@ function operate(x, y, z) {
 
     if (z === '+') {
         output = add(x, y);
-        return output;
+        return Math.round(1000 * output) / 1000;
     } else if (z === '-') {
         output = subtract(x, y);
-        return output;
+        return Math.round(1000 * output) / 1000;
     } else if (z === '*') {
         output = multiply(x, y);
-        return output;
+        return Math.round(1000 * output) / 1000;
     } else if (z === '/') {
         output = divide(x, y);
-        return output;
+        return Math.round(1000 * output) / 1000;
     }
 }
 
