@@ -1,6 +1,6 @@
 //Mathematical functions (+, -, *, /)
 function add(x, y) {
-    return x + y;
+    return parseInt(x) + parseInt(y);
 }
 
 function subtract(x, y) {
@@ -41,15 +41,19 @@ const output = document.querySelector('.output');
 
 //DOM elements for buttons.
 const numbers = document.querySelectorAll('#numbers');
+const operators = document.querySelectorAll('#operators');
 const decimal = document.querySelector('.decimal');
 const zero = document.querySelector('.zero');
 const clear = document.querySelector('.clear');
 const deleteBtn = document.querySelector('.delete');
+const equals = document.querySelector('.equals');
 
-//Function that displays the numbers when clicked as well as limit certain buttons.
+//Global variables for the following functions.
 let displayValue = [];
 let counter = 0;
+let opCounter = 0;
 
+//Function that displays the numbers when clicked as well as limit certain buttons.
 function calcDisplay() {
 
     numbers.forEach((number) => {
@@ -58,7 +62,7 @@ function calcDisplay() {
             console.log(displayValue);
             output.textContent = displayValue.join('');
             counter++;
-            console.log(counter);
+            console.log(`Counter: ${counter}`);
         });
     });
 
@@ -98,9 +102,11 @@ decimalDisplay();
 function clearDisplay() {
     clear.addEventListener('click', () => {
         counter = 0;
+        opCounter = 0;
         displayValue = [];
         console.log(displayValue);
         output.textContent = '0';
+        formula.textContent = '';
         decimalDisplay();
     });
 }
@@ -122,3 +128,57 @@ function deleteDisplay() {
 }
 
 deleteDisplay();
+
+//Function that stores first number and operator when user presses any operator
+function doMath() {
+
+    let x = '';
+    let y = '';
+    let z = '';
+
+    operators.forEach((operator) => {
+        operator.addEventListener('click', () => {
+            counter = 0;
+
+            if (displayValue.length === 0) {
+                opCounter = 0;
+                console.log(`Operator Counter :${opCounter}`);
+            } else {
+                opCounter++;
+                console.log(`Operator Counter: ${opCounter}`);
+            };
+
+            if (opCounter >= 2) {
+                y = displayValue.join('');
+                formula.textContent = `${operate(x, y, z)} ${operator.textContent}`;
+                output.textContent = operate(x, y, z);
+                x = operate(x, y, z);
+                console.log(`X: ${x}`);
+                displayValue = [];
+                z = operator.value;
+                console.log(z);
+                decimalDisplay();
+            } else {
+                x = output.textContent;
+                console.log(`X: ${x}`);
+                console.log(displayValue);
+                z = operator.value;
+                console.log(z);
+                formula.textContent = `${x} ${operator.textContent}`;
+                decimalDisplay();
+                displayValue = [];
+            };
+        });
+    });
+
+    equals.addEventListener('click', () => {
+        counter = 0;
+        opCounter = 0;
+        y = displayValue.join('');
+        formula.textContent += ` ${y} = `;
+        output.textContent = operate(x, y, z);
+        displayValue = [];
+    });
+}
+
+doMath();
