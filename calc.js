@@ -148,9 +148,11 @@ function doMath() {
     let x = '';
     let y = '';
     let z = '';
+    let eqCounter = 0;
 
     operators.forEach((operator) => {
         operator.addEventListener('click', () => {
+            eqCounter++;
             counter = 0;
 
             if (displayValue.length === 0) {
@@ -193,16 +195,21 @@ function doMath() {
     });
 
     equals.addEventListener('click', () => {
-        counter = 0;
-        opCounter = 0;
-        y = displayValue.join('');
-        console.log(`Y: ${y}`);
-        formula.textContent += ` ${y} = `;
-        output.textContent = operate(x, y, z);
-        displayValue = [];
 
-        if (operate(x, y, z) === Infinity) {
-            output.textContent = 'ERROR';
+        const equalsCheck = formula.textContent.includes('=');
+
+        if (equalsCheck === false) {
+            counter = 0;
+            opCounter = 0;
+            y = displayValue.join('');
+            console.log(`Y: ${y}`);
+            formula.textContent += ` ${y} = `;
+            output.textContent = operate(x, y, z);
+            displayValue = [];
+
+            if (operate(x, y, z) === Infinity) {
+                output.textContent = 'ERROR';
+            };
         };
     });
 }
