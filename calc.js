@@ -81,7 +81,8 @@ calcDisplay();
 //Function that displays the 0 button and also limits its uses.
 function zeroDisplay() {
     zero.addEventListener('click', () => {
-        if (opCounter >= 1 && counter < 1) {
+        const zeroCheck = displayValue.includes('0');
+        if (opCounter >= 1 && counter < 1 && zeroCheck === false) {
             displayValue.push(zero.value);
             console.log(displayValue);
             output.textContent = displayValue.join('');
@@ -182,6 +183,12 @@ function doMath() {
                 decimalDisplay();
                 displayValue = [];
             };
+
+            if (opCounter >= 2 && x === Infinity) {
+                output.textContent = 'ERROR';
+                formula.textContent = 'ERROR';
+                opCounter = 0;
+            };
         });
     });
 
@@ -193,6 +200,10 @@ function doMath() {
         formula.textContent += ` ${y} = `;
         output.textContent = operate(x, y, z);
         displayValue = [];
+
+        if (operate(x, y, z) === Infinity) {
+            output.textContent = 'ERROR';
+        };
     });
 }
 
