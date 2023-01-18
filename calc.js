@@ -70,12 +70,24 @@ function calcDisplay() {
         if (counter >= 1) {
             counter++;
             displayValue.push(zero.value);
+            console.log(displayValue);
             output.textContent = displayValue.join('');
-        }
+        };
     });
 }
 
 calcDisplay();
+
+//Function that displays the 0 button and also limits its uses.
+function zeroDisplay() {
+    zero.addEventListener('click', () => {
+        if (opCounter >= 1 && counter < 1) {
+            displayValue.push(zero.value);
+            console.log(displayValue);
+            output.textContent = displayValue.join('');
+        };
+    }, { once: true });
+}
 
 //Function that displays the decimal as well as limits when and how it is displayed.
 function decimalDisplay() {
@@ -148,6 +160,8 @@ function doMath() {
                 console.log(`Operator Counter: ${opCounter}`);
             };
 
+            zeroDisplay();
+
             if (opCounter >= 2) {
                 y = displayValue.join('');
                 formula.textContent = `${operate(x, y, z)} ${operator.textContent}`;
@@ -175,6 +189,7 @@ function doMath() {
         counter = 0;
         opCounter = 0;
         y = displayValue.join('');
+        console.log(`Y: ${y}`);
         formula.textContent += ` ${y} = `;
         output.textContent = operate(x, y, z);
         displayValue = [];
