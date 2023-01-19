@@ -108,3 +108,25 @@ html {
 .equals {
     grid-area: 5 / 3 / 6 / 5;
 }
+
+button {
+    background-color: rgb(85, 85, 85);
+    font-size: 20px;
+    color: white;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+.clear,
+.delete,
+.equals {
+    color: black;
+    background-color: rgb(175, 175, 175);
+}
+
+.add,
+.divide,
+.multiply,
+.subtract {
+    background-color: rgb(131, 141, 253);
+}
