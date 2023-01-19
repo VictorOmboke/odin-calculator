@@ -1,8 +1,10 @@
 html {
+    background-color: rgb(238, 238, 238);
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Roboto', sans-serif;
 }
 
 * {
@@ -10,7 +12,8 @@ html {
 }
 
 #container {
-    height: 500px;
+    background-color: rgb(136, 136, 136);
+    height: 600px;
     width: 400px;
     padding: 12px;
     border: 2px solid black;
@@ -20,7 +23,8 @@ html {
 }
 
 #display {
-    height: 100px;
+    background-color: rgb(238, 238, 238);
+    height: 150px;
     margin-bottom: 10px;
     padding: 10px;
     border: 2px solid black;
@@ -33,17 +37,17 @@ html {
 }
 
 .output {
-    font-size: 35px;
-    font-weight: 200;
+    font-size: 55px;
+    font-weight: 100;
 }
 
 .formula {
-    font-size: 18px;
+    font-size: 28px;
 }
 
 #keys {
     max-width: 380px;
-    height: 375px;
+    height: 410px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
