@@ -1,6 +1,6 @@
 //Mathematical functions (+, -, *, /)
 function add(x, y) {
-    return parseInt(x) + parseInt(y);
+    return +x + +y;
 }
 
 function subtract(x, y) {
@@ -21,16 +21,16 @@ function operate(x, y, z) {
 
     if (z === '+') {
         output = add(x, y);
-        return Math.round(1000 * output) / 1000;
+        return Math.round((output + Number.EPSILON) * 1000) / 1000;
     } else if (z === '-') {
         output = subtract(x, y);
-        return Math.round(1000 * output) / 1000;
+        return Math.round((output + Number.EPSILON) * 1000) / 1000;
     } else if (z === '*') {
         output = multiply(x, y);
-        return Math.round(1000 * output) / 1000;
+        return Math.round((output + Number.EPSILON) * 1000) / 1000;
     } else if (z === '/') {
         output = divide(x, y);
-        return Math.round(1000 * output) / 1000;
+        return Math.round((output + Number.EPSILON) * 1000) / 1000;
     }
 }
 
@@ -141,11 +141,9 @@ function doMath() {
     let x = '';
     let y = '';
     let z = '';
-    let eqCounter = 0;
 
     operators.forEach((operator) => {
         operator.addEventListener('click', () => {
-            eqCounter++;
             counter = 0;
 
             if (displayValue.length === 0) {
