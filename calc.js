@@ -59,10 +59,8 @@ function calcDisplay() {
     numbers.forEach((number) => {
         number.addEventListener('click', () => {
             displayValue.push(number.value);
-            console.log(displayValue);
             output.textContent = displayValue.join('');
             counter++;
-            console.log(`Counter: ${counter}`);
         });
     });
 
@@ -70,7 +68,6 @@ function calcDisplay() {
         if (counter >= 1) {
             counter++;
             displayValue.push(zero.value);
-            console.log(displayValue);
             output.textContent = displayValue.join('');
         };
     });
@@ -84,7 +81,6 @@ function zeroDisplay() {
         const zeroCheck = displayValue.includes('0');
         if (opCounter >= 1 && counter < 1 && zeroCheck === false) {
             displayValue.push(zero.value);
-            console.log(displayValue);
             output.textContent = displayValue.join('');
         };
     }, { once: true });
@@ -117,7 +113,6 @@ function clearDisplay() {
         counter = 0;
         opCounter = 0;
         displayValue = [];
-        console.log(displayValue);
         output.textContent = '0';
         formula.textContent = '';
         decimalDisplay();
@@ -132,9 +127,7 @@ function deleteDisplay() {
         if (counter > 0) {
             counter--;
         };
-        console.log(counter);
         displayValue.pop();
-        console.log(displayValue);
         output.textContent = displayValue.join('');
         decimalDisplay();
     });
@@ -157,10 +150,8 @@ function doMath() {
 
             if (displayValue.length === 0) {
                 opCounter = 0;
-                console.log(`Operator Counter :${opCounter}`);
             } else {
                 opCounter++;
-                console.log(`Operator Counter: ${opCounter}`);
             };
 
             zeroDisplay();
@@ -170,17 +161,12 @@ function doMath() {
                 formula.textContent = `${operate(x, y, z)} ${operator.textContent}`;
                 output.textContent = operate(x, y, z);
                 x = operate(x, y, z);
-                console.log(`X: ${x}`);
                 displayValue = [];
                 z = operator.value;
-                console.log(z);
                 decimalDisplay();
             } else {
                 x = output.textContent;
-                console.log(`X: ${x}`);
-                console.log(displayValue);
                 z = operator.value;
-                console.log(z);
                 formula.textContent = `${x} ${operator.textContent}`;
                 decimalDisplay();
                 displayValue = [];
@@ -202,7 +188,6 @@ function doMath() {
             counter = 0;
             opCounter = 0;
             y = displayValue.join('');
-            console.log(`Y: ${y}`);
             formula.textContent += ` ${y} = `;
             output.textContent = operate(x, y, z);
             displayValue = [];
